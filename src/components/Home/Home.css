@@ -1,0 +1,39 @@
+.form-group{
+    padding: 0 10vw 0 10vw;
+}
+
+.form-control{
+    margin : 2vh 0 2vh 0;
+}
+
+.modal-body{
+    height: 50vh;
+    text-align: center;
+    margin-top: 25vh;
+}
+
+.modal-content{
+    background-color: azure;
+}
+
+.error{
+    text-align: center;
+    color :#D75452;
+    background-color: transparent;
+    border : none;
+    font-size: 1em;
+}
+.noerror{
+    display: none;
+}
+
+.submit-logo {
+    animation: submit-logo-spin infinite 2s linear;
+    height: 80px;
+}
+
+@keyframes submit-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
