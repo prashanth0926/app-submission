@@ -1,8 +1,12 @@
-import { NEW_USER, USER_ADDING } from '../../actions/actionTypes';
+import { NEW_USER, USER_ADDING, USER_ADDING_ERROR,ADDING_CODE,CODE_SUBMIT_SUCCESS,CODE_SUBMIT_ERROR } from '../../actions/actionTypes';
 
 let intialState = {
-    users : [],
-    userAdding : false
+    id : "" ,
+    userAdding : false,
+    addingCode:false,
+    codeSubmitted:false,
+    userAddError:"",
+    codeSubmitError:""
 }
 
 export const userReducer = (state = intialState, action) => {
@@ -10,8 +14,7 @@ export const userReducer = (state = intialState, action) => {
     switch(action.type){
         case NEW_USER :
             return {
-                ...state,
-                users: [...state.users, action.user],
+                id:action.id,
                 userAdding: false
 
             }
@@ -20,7 +23,27 @@ export const userReducer = (state = intialState, action) => {
                 ...state,
                 userAdding : action.userAdding
             }
-        default : 
+        case ADDING_CODE:
+            return {
+                ...state,
+                addingCode:action.addingCode
+            }
+        case CODE_SUBMIT_SUCCESS:
+            return {
+                ...state,
+                codeSubmitted:action.codeSubmitted
+            }
+        case USER_ADDING_ERROR:
+            return {
+                ...state,
+                userAddError : action.msg
+            }
+        case CODE_SUBMIT_ERROR:
+            return {
+                ...state,
+                codeSubmitError:action.codeSubmitError
+            }
+        default :
             return state;
     }
 }

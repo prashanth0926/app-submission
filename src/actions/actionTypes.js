@@ -1,2 +1,10 @@
 export const NEW_USER = 'NEW_USER';
 export const USER_ADDING = 'USER_ADDING';
+export const USER_ADDING_ERROR='USER_ADDING_ERROR';
+export const CODE_SUBMIT_SUCCESS='CODE_SUBMIT_SUCCESS';
+export const ADDING_CODE='ADDING_CODE'
+export const CODE_SUBMIT_ERROR='CODE_SUBMIT_ERROR';
+
+/*admin actions*/
+export const LOAD_APP_SUCCESS = 'LOAD_APP_SUCCESS';
+export const LOAD_APP_FAIL='LOAD_APP_FAIL';
