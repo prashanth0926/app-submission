@@ -49,11 +49,11 @@ class CodeSubmit extends Component{
     //console.log(this.props.match.params.id) -> parameters in the URL;
 
     render(){
-        console.log(this.props.codeSubmitError);
+        console.log(this.props.codeSubmitError, this.props.codeSubmitted);
         if(this.props.codeSubmitted){
             return (<div> CODE SUBMITTED </div>);
         }/* error here when moving from application page to code page */
-        else if(this.props.codeSubmitError.length>0){
+        else if( this.props.codeSubmitError && this.props.codeSubmitError.length>0){
             return (<div>{this.props.codeSubmitError} </div>);
         }
        return(
