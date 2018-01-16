@@ -51,17 +51,45 @@ class Results extends Component{
         // }
     }
 
+    componentWillReceiveProps(nextProps){
+        console.log('applicants1: ', this.props.applicants);
+        if (JSON.stringify(this.props.applicants) !== JSON.stringify(nextProps.applicants)) {
+            this.setState({
+                applicants: nextProps.applicants
+            });
+        }
+        // if( this.props.applicants && (this.props.applicants.length !== nextProps.applicants.length)){
+        //     this.props.applicants = nextProps.applicants;
+        //     console.log('applicants2: ',nextProps.applicants);
+        // }
+    }
+
     componentDidMount(){
       // this.props.loadApplicants();
         this.props.actions.loadApplicants();
-        console.log(this.context.redux.getState());
+        // console.log(this.context.redux.getState());
+    }
+
+    filterPendingApplications() {
+        const data = this.state.applicants;
+        data.filter(applicant => {return applicant.status === 'Pending'});
+        this.setState({applicants: data});
+    }
+
+    filterData(filter) {
+        this.setState({applicants: this.props.applicants});
     }
 
     render(){
         return(
-            <div className="table">
+            <div>
+                <div>
+                    <button onClick={this.filterData.bind(this)}>All</button>
+                    <button onClick={this.filterPendingApplications.bind(this)}>Pending</button>
+                </div>
+                <div className="table">
                 <ReactTable
-                    data = {this.props.applicants}
+                    data = {this.state.applicants}
                     columns={this.state.columns}
                   //  defaultPageSize = {this.state.applicants.length}
                     showPaginationBottom = {true}
@@ -69,6 +97,7 @@ class Results extends Component{
                     multiSort = {false}
                     //pageSize = {this.state.applicants.length}
                 />
+                </div>
             </div>
         )
     }
@@ -76,7 +105,7 @@ class Results extends Component{
 
 const mapStateToProps = state => {
     return {
-        appicants: state.applicants
+        applicants: state.admin.applicants
     }
 }
 

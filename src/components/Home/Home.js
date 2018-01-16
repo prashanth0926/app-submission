@@ -5,7 +5,7 @@ import { Redirect } from "react-router";
 import './Home.css';
 import logo from '../../logo.svg';
 
-import { onSubmit, onUserAdding } from '../../actions';
+import { onSubmit } from '../../actions';
 
 
 function validate(e){
@@ -117,7 +117,6 @@ class Home extends Component{
             this.setState({
                 showModal : true
             });
-            this.props.onUserAdding(true);
             let user = {
                 firstname : this.state.user.firstname,
                 lastname : this.state.user.lastname,
@@ -139,7 +138,7 @@ class Home extends Component{
         });
     }
     render(){
-    if(this.state.submitted){
+    if(this.state.submitted && this.props.id){
         const _id=this.props.id;
         console.log(this.state,_id);
         return (<Redirect to={`/code/${_id}`}/>)
@@ -214,7 +213,7 @@ class Home extends Component{
                         <span className={isError('zipcode')?"errortext":"noerror"}>Enter your zip code</span>
                     </div>
                     <input className=" btn btn-lg btn-success"  type="submit" />
-                     <p className={(this.props.userAddError.length>0)? "errortext":"noerror"}>{this.props.userAddError}</p>
+                     <p className={(this.props.userAddError && this.props.userAddError.length>0)? "errortext":"noerror"}>{this.props.userAddError}</p>
                     </fieldset>
                 </form>
             </div>
@@ -232,8 +231,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSubmit: (user) => dispatch(onSubmit(user)),
-        onUserAdding: (adding) => dispatch(onUserAdding(adding))
+        onSubmit: (user) => dispatch(onSubmit(user))
     }
 }
 

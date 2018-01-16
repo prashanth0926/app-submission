@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import './CodeSubmission.css';
-import logo from '../../logo.svg';
-
+import { RingLoader } from 'react-spinners';
 import {onCodeSubmit, OnaddingCode} from "../../actions/code";
+import { stat } from 'fs';
 
 class CodeSubmit extends Component{
 
@@ -30,16 +30,17 @@ class CodeSubmit extends Component{
             code: ''
         });
     }
+
     onClick = (event) => {
         event.preventDefault();
-            this.props.OnaddingCode(true);
-            let userCode = {
-               code : this.state.code,
-               _id:this.props.match.params.id
-            }
-            this.props.onCodeSubmit(userCode);
-
-        };
+        this.props.OnaddingCode(true);
+        let userCode = {
+           code : this.state.code,
+           _id:this.props.match.params.id
+        }
+        this.props.onCodeSubmit(userCode);
+    }
+    
     componentWillReceiveProps(nextProps) {
         if (!nextProps.addingCode) {
             this.handleClose();
@@ -50,7 +51,15 @@ class CodeSubmit extends Component{
 
     render(){
         console.log(this.props.codeSubmitError, this.props.codeSubmitted);
-        if(this.props.codeSubmitted){
+        if(this.props.loading) {
+            return (<div className='sweet-loading'>
+                <RingLoader
+                    color={'#A9A9A9'} 
+                    loading={this.props.loading} 
+                    />
+                </div>)
+        }
+        else if(this.props.codeSubmitted){
             return (<div> CODE SUBMITTED </div>);
         }/* error here when moving from application page to code page */
         else if( this.props.codeSubmitError && this.props.codeSubmitError.length>0){
@@ -59,19 +68,19 @@ class CodeSubmit extends Component{
        return(
             <div className="container">
                 <form className="well" onSubmit={this.onClick} noValidate>
-                        <legend>Submit Filler Code here</legend>
-                        <div className="form-group">
-                            <label>Code</label>
-                            <textarea
-                                id="code"
-                                className="form-control"
-                                rows="15"
-                                placeholder="Enter Code here"
-                                value={this.state.code}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <input className=" btn btn-lg btn-success"  type="submit" />
+                    <legend>Submit Filler Code here</legend>
+                    <div className="form-group">
+                        <label>Code</label>
+                        <textarea
+                            id="code"
+                            className="form-control"
+                            rows="15"
+                            placeholder="Enter Code here"
+                            value={this.state.code}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <input className=" btn btn-lg btn-success"  type="submit" />
                 </form>
             </div>
         );
@@ -81,7 +90,8 @@ const mapStateToProps = state => {
     return{
         addingCode : state.user.addingCode,
         codeSubmitted : state.user.codeSubmitted,
-        codeSubmitError:state.user.codeSubmitError
+        codeSubmitError:state.user.codeSubmitError,
+        loading : state.user.loading
     }
 }
 

@@ -5,7 +5,7 @@ import { userReducer } from './reducers/users';
 import { adminReducer } from './reducers/adminReducer';
 const combinedReducer = combineReducers({
     user : userReducer,
-    admin:adminReducer
+    admin: adminReducer
 });
 
 const configureStore = () => {

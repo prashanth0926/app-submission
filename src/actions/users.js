@@ -1,4 +1,4 @@
-import { NEW_USER, USER_ADDING,USER_ADDING_ERROR } from './actionTypes';
+import { NEW_USER, USER_ADDING,USER_ADDING_ERROR, SET_LOADING } from './actionTypes';
 //import history from '../history'
 const addUser = _id => {
     return {
@@ -20,6 +20,7 @@ const headers = {
 }
 export const onSubmit = user => {
     return ( dispatch) => {
+        dispatch(onUserAdding(true));
         fetch('http://localhost:8000/', {
                 method: 'POST',
                 body:JSON.stringify({
@@ -36,6 +37,7 @@ export const onSubmit = user => {
                 return response.json();
         }}
         ).then((data)=> {
+            dispatch(onUserAdding(false));
             if(data.type==='error')
                 dispatch(addUserFail(data.message));
             else

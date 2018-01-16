@@ -1,4 +1,4 @@
-import { NEW_USER, USER_ADDING, USER_ADDING_ERROR,ADDING_CODE,CODE_SUBMIT_SUCCESS,CODE_SUBMIT_ERROR } from '../../actions/actionTypes';
+import { NEW_USER, USER_ADDING,SET_LOADING, USER_ADDING_ERROR,ADDING_CODE,CODE_SUBMIT_SUCCESS,CODE_SUBMIT_ERROR } from '../../actions/actionTypes';
 
 let intialState = {
     id : "" ,
@@ -6,7 +6,8 @@ let intialState = {
     addingCode:false,
     codeSubmitted:false,
     userAddError:"",
-    codeSubmitError:""
+    codeSubmitError:"",
+    loading: false
 }
 
 export const userReducer = (state = intialState, action) => {
@@ -22,6 +23,11 @@ export const userReducer = (state = intialState, action) => {
             return {
                 ...state,
                 userAdding : action.userAdding
+            }
+        case SET_LOADING :
+            return {
+                ...state,
+                loading:action.payload
             }
         case ADDING_CODE:
             return {

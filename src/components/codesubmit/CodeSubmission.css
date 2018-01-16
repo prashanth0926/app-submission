@@ -46,6 +46,12 @@ legend{
     height: 80px;
 }
 
+.sweet-loading {
+    position: absolute;
+    top: 46%;
+    left: 46%;
+}
+
 @keyframes submit-logo-spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
