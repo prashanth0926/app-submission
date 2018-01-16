@@ -1,6 +1,7 @@
 import {
-    LOAD_APP_SUCCESS, LOAD_APP_FAIL
+    LOAD_APP_SUCCESS, LOAD_APP_FAIL, UPDATE_STATUS
 } from "../../actions/actionTypes";
+import { stat } from "fs";
 
 let intialState = {
     applicants:[],
@@ -22,6 +23,13 @@ export const adminReducer =(state = intialState, action)=>{
                     return d;
                 })
 
+            }
+        case UPDATE_STATUS :
+           const tmpData = state.applicants;
+           tmpData.find((a) => {return a.email === action.payload.email}).status = action.status;
+            return {
+                ...state,
+                applicants: tmpData
             }
         case LOAD_APP_FAIL :
             return {

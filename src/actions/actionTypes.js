@@ -5,6 +5,7 @@ export const CODE_SUBMIT_SUCCESS='CODE_SUBMIT_SUCCESS';
 export const ADDING_CODE='ADDING_CODE';
 export const CODE_SUBMIT_ERROR='CODE_SUBMIT_ERROR';
 export const SET_LOADING='SET_LOADING';
+export const UPDATE_STATUS='UPDATE_STATUS';
 
 /*admin actions*/
 export const LOAD_APP_SUCCESS = 'LOAD_APP_SUCCESS';

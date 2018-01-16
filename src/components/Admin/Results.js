@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ReactTable from 'react-table';
 import {bindActionCreators} from 'redux';
 import * as adminActions from '../../actions/adminActions';
+import Modal from 'react-modal';
 
 
 import './Results.css';
@@ -15,7 +16,10 @@ class Results extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            pendingFlag: false,
             applicants : this.props.applicants,
+            displayCodeModal: false,
+            selectedRow: {},
             columns : [
                 {
                     Header: 'First Name',
@@ -31,7 +35,16 @@ class Results extends Component{
                 },
                 {
                     Header: 'Code',
-                    accessor: 'code'
+                    accessor: 'code',
+                    Cell: row => (
+                        <div>
+                            {
+                                (row.original.status === 'Pending') ?
+                                <a onClick={this.toggleModal.bind(this, row)}>{row.value}</a> :
+                                <span>{row.value}</span>
+                            }
+                        </div>
+                      ),
                 },
                 {
                     Header: 'Status',
@@ -53,7 +66,7 @@ class Results extends Component{
 
     componentWillReceiveProps(nextProps){
         console.log('applicants1: ', this.props.applicants);
-        if (JSON.stringify(this.props.applicants) !== JSON.stringify(nextProps.applicants)) {
+        if (this.props.applicants !== nextProps.applicants) {
             this.setState({
                 applicants: nextProps.applicants
             });
@@ -70,22 +83,42 @@ class Results extends Component{
         // console.log(this.context.redux.getState());
     }
 
-    filterPendingApplications() {
-        const data = this.state.applicants;
-        data.filter(applicant => {return applicant.status === 'Pending'});
-        this.setState({applicants: data});
+    toggleModal(row) {
+        this.setState({
+            displayCodeModal: !this.state.displayCodeModal,
+            selectedRow: row && row.original
+        });
     }
 
-    filterData(filter) {
-        this.setState({applicants: this.props.applicants});
+    filterPendingApplications() {
+        const data = this.props.applicants.filter(function(applicant) {
+            return (applicant.status == 'Pending');
+        });
+        this.setState({
+            pendingFlag: true,
+            applicants: data
+        });
+    }
+
+    resetFilter() {
+        this.setState({pendingFlag: false, applicants: this.props.applicants});
+    }
+
+    updateAppStatus(status) {
+        this.props.actions.changeStatus(this.state.selectedRow, status);
+        this.toggleModal();
+        this.setState({applicants: []}, () => { 
+            this.state.pendingFlag ? this.filterPendingApplications() : 
+            this.setState({applicants: this.props.applicants});
+        });
     }
 
     render(){
         return(
             <div>
                 <div>
-                    <button onClick={this.filterData.bind(this)}>All</button>
-                    <button onClick={this.filterPendingApplications.bind(this)}>Pending</button>
+                    <button className="btn btn-primary" onClick={this.resetFilter.bind(this)}>All</button>
+                    <button className="btn btn-primary" onClick={this.filterPendingApplications.bind(this)}>Pending</button>
                 </div>
                 <div className="table">
                 <ReactTable
@@ -98,6 +131,11 @@ class Results extends Component{
                     //pageSize = {this.state.applicants.length}
                 />
                 </div>
+                <Modal isOpen={this.state.displayCodeModal} onRequestClose={this.toggleModal.bind(this)}>
+                    <div>{this.state.selectedRow && this.state.selectedRow.code}</div>
+                    <button onClick={this.updateAppStatus.bind(this, 'Accept')} className="btn btn-primary"> Accept </button>
+                    <button onClick={this.updateAppStatus.bind(this, 'Reject')} className="btn btn-primary"> Reject </button>
+                </Modal>
             </div>
         )
     }
@@ -105,6 +143,7 @@ class Results extends Component{
 
 const mapStateToProps = state => {
     return {
+        loading: state.user.loading,
         applicants: state.admin.applicants
     }
 }
