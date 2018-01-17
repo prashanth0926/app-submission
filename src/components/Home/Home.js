@@ -156,7 +156,7 @@ class Home extends Component{
            </div>)
        }
 
-        if(this.state.submitted && this.props.id){
+        if(this.state.submitted && this.props.id && !this.props.userAddError){
             const _id=this.props.id;
             return (<Redirect push to={`/code/${_id}`}/>)
         }

@@ -6,6 +6,7 @@
     "body-parser": "^1.18.2",
     "bootstrap": "^3.3.7",
     "express": "^4.16.2",
+    "forever": "^0.15.3",
     "history": "^4.7.2",
     "jade": "^1.11.0",
     "mongoose": "^4.13.9",
@@ -26,6 +27,7 @@
   },
   "scripts": {
     "server": "node ./server/app.js",
+    "prestart": "forever -o out.log -e err.log -m5 start ./server/app.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

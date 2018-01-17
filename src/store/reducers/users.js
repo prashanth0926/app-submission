@@ -5,7 +5,7 @@ let intialState = {
     userAdding : false,
     addingCode:false,
     codeSubmitted:false,
-    userAddError:"",
+    userAddError:null,
     codeSubmitError:"",
     loading: false
 }

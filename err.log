@@ -1,0 +1,110 @@
+(node:9848) DeprecationWarning: `open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set the `useMongoClient` option if using `connect()` or `createConnection()`. See http://mongoosejs.com/docs/connections.html#use-mongo-client
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::8000
+    at Object.exports._errnoException (util.js:1034:11)
+    at exports._exceptionWithHostPort (util.js:1057:20)
+    at Server._listen2 (net.js:1265:14)
+    at listen (net.js:1301:10)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (C:\Users\molakala\Documents\app-submission\node_modules\express\lib\application.js:618:24)
+    at Object.<anonymous> (C:\Users\molakala\Documents\app-submission\server\app.js:70:5)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.runMain (module.js:605:10)
+    at run (bootstrap_node.js:423:7)
+    at startup (bootstrap_node.js:147:9)
+    at bootstrap_node.js:538:3
+(node:17928) DeprecationWarning: `open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set the `useMongoClient` option if using `connect()` or `createConnection()`. See http://mongoosejs.com/docs/connections.html#use-mongo-client
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::8000
+    at Object.exports._errnoException (util.js:1034:11)
+    at exports._exceptionWithHostPort (util.js:1057:20)
+    at Server._listen2 (net.js:1265:14)
+    at listen (net.js:1301:10)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (C:\Users\molakala\Documents\app-submission\node_modules\express\lib\application.js:618:24)
+    at Object.<anonymous> (C:\Users\molakala\Documents\app-submission\server\app.js:70:5)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.runMain (module.js:605:10)
+    at run (bootstrap_node.js:423:7)
+    at startup (bootstrap_node.js:147:9)
+    at bootstrap_node.js:538:3
+(node:15132) DeprecationWarning: `open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set the `useMongoClient` option if using `connect()` or `createConnection()`. See http://mongoosejs.com/docs/connections.html#use-mongo-client
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::8000
+    at Object.exports._errnoException (util.js:1034:11)
+    at exports._exceptionWithHostPort (util.js:1057:20)
+    at Server._listen2 (net.js:1265:14)
+    at listen (net.js:1301:10)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (C:\Users\molakala\Documents\app-submission\node_modules\express\lib\application.js:618:24)
+    at Object.<anonymous> (C:\Users\molakala\Documents\app-submission\server\app.js:70:5)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.runMain (module.js:605:10)
+    at run (bootstrap_node.js:423:7)
+    at startup (bootstrap_node.js:147:9)
+    at bootstrap_node.js:538:3
+(node:14108) DeprecationWarning: `open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set the `useMongoClient` option if using `connect()` or `createConnection()`. See http://mongoosejs.com/docs/connections.html#use-mongo-client
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::8000
+    at Object.exports._errnoException (util.js:1034:11)
+    at exports._exceptionWithHostPort (util.js:1057:20)
+    at Server._listen2 (net.js:1265:14)
+    at listen (net.js:1301:10)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (C:\Users\molakala\Documents\app-submission\node_modules\express\lib\application.js:618:24)
+    at Object.<anonymous> (C:\Users\molakala\Documents\app-submission\server\app.js:70:5)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.runMain (module.js:605:10)
+    at run (bootstrap_node.js:423:7)
+    at startup (bootstrap_node.js:147:9)
+    at bootstrap_node.js:538:3
+(node:17864) DeprecationWarning: `open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set the `useMongoClient` option if using `connect()` or `createConnection()`. See http://mongoosejs.com/docs/connections.html#use-mongo-client
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::8000
+    at Object.exports._errnoException (util.js:1034:11)
+    at exports._exceptionWithHostPort (util.js:1057:20)
+    at Server._listen2 (net.js:1265:14)
+    at listen (net.js:1301:10)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (C:\Users\molakala\Documents\app-submission\node_modules\express\lib\application.js:618:24)
+    at Object.<anonymous> (C:\Users\molakala\Documents\app-submission\server\app.js:70:5)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.runMain (module.js:605:10)
+    at run (bootstrap_node.js:423:7)
+    at startup (bootstrap_node.js:147:9)
+    at bootstrap_node.js:538:3
