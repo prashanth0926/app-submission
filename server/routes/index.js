@@ -5,14 +5,10 @@ var Applications=require('../models/Applicants');
 
 var router = express.Router();
 
-router.use(bodyParser.json())
-    .get('/', function(req, res, next) {
-        console.log("hrere");
-  res.send('respond now');
+router.use(bodyParser.json()).get('/api/',function(req,res,next){
 
-    })
-
-    .post('/',function(req,res,next) {
+		res.send('Server');
+}).post('/api/',function(req,res,next) {
         var newApp = {
             "firstname": req.body.firstname,
             "lastname": req.body.lastname,
@@ -44,7 +40,7 @@ router.use(bodyParser.json())
 
         });
     });
-router.route('/submit/').put(function(req, res, next) {
+router.route('/api/submit/').put(function(req, res, next) {
     console.log(req.body._id, req.body.code);
     Applications.findOneAndUpdate({$and : [ {_id:(req.body._id)},{ status : "Not submitted"}]},{$set: {code : req.body.code , status: "Pending" }},{new:true},function(err,resp){
         if (err)
@@ -63,8 +59,9 @@ router.route('/submit/').put(function(req, res, next) {
 
 });
 
-
-router.route('/admin/getAll/').get(function(req, res, next) {
+/* request for loading all the applicants on Admin page*/
+router.route('/api/getAll/').get(function(req, res, next) {
+	console.log("dsdsd");
     Applications.find(function(err,resp) {
         if (err)
             res.send({"type": "error", "message": res.statusText});
@@ -74,6 +71,16 @@ router.route('/admin/getAll/').get(function(req, res, next) {
                 resp
             );
         }
+    })
+})
+
+/* request for updating applicant's coding evaluation*/
+router.route('/api/update/').put(function(req,res,next){
+    Applications.findOneAndUpdate({email:req.body.email},{$set : {status : req.body.status}},function(err,resp){
+        if(err)
+            res.send({"type":"error" , "message":res.statusText});
+        else
+            res.send({"type": "success", "message":"code updated successfully"});
     })
 })
 

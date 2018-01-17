@@ -1,11 +1,9 @@
-import {
-    LOAD_APP_SUCCESS, LOAD_APP_FAIL, UPDATE_STATUS
-} from "../../actions/actionTypes";
-import { stat } from "fs";
+import {LOAD_APP_SUCCESS, LOAD_APP_FAIL, UPDATE_STATUS,UPDATE_STATUS_FAIL} from "../../actions/actionTypes";
 
 let intialState = {
     applicants:[],
-    appFail:""
+    loadApplicantsFail:"",
+    updateStatusFail:""
 }
 
 export const adminReducer =(state = intialState, action)=>{
@@ -34,7 +32,12 @@ export const adminReducer =(state = intialState, action)=>{
         case LOAD_APP_FAIL :
             return {
                 ...state,
-                appFail : action.payload
+                loadApplicantsFail : action.payload
+            }
+        case UPDATE_STATUS_FAIL:
+            return {
+                ...state,
+                updateStatusFail: action.payload
             }
         default :
             return state;

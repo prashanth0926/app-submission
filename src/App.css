@@ -1,6 +1,4 @@
-.App {
-  text-align: center;
-}
+
 
 .App-header {
   background-color: #222;
@@ -11,8 +9,37 @@
 
 .App-title {
   font-size: 1.5em;
+  color: #222222;
+}
+Nav a{
+  color:#ffA500;
+}
+Nav a:hover{
+  color:#ffe147;
+  text-decoration: none;
+}
+Nav a.active{
+  color : #000000;
+  background: #ffA500;
+  border-radius: 2px;
+  text-decoration: none;
 }
 
 .App-intro {
   font-size: large;
+}
+
+
+.links{
+  padding:1em;
+  margin : auto;
+  text-align:center;
+  font-size:20px;
+
+
+}
+.nav >li {
+  padding-top: 1em;
+  padding-bottom:1em;
+  display: inline !important;
 }

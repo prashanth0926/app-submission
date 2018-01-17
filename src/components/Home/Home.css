@@ -1,12 +1,3 @@
-/*
-.form-group{
-    padding: 0 10vw 0 10vw;
-}
-
-.form-control{
-    margin : 2vh 0 2vh 0;
-}
-*/
 
 .form-control:focus{
     border-color: #000000 ;
@@ -33,7 +24,7 @@ legend{
     font-size: 1em;
 }
 .error:focus, .error{
-    border :  1px solid #ff0000;
+    border :  2px solid #ff0000;
     border-color: #ff0000;
 }
 
@@ -46,6 +37,10 @@ legend{
     height: 80px;
 }
 
+.fieldLabel{
+    font-size: 1.3em;
+    padding:5px 0px;
+}
 @keyframes submit-logo-spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }

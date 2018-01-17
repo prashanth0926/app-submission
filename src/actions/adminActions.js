@@ -1,4 +1,4 @@
-import {LOAD_APP_SUCCESS,LOAD_APP_FAIL, UPDATE_STATUS} from "./actionTypes";
+import {LOAD_APP_SUCCESS,LOAD_APP_FAIL, UPDATE_STATUS, UPDATE_STATUS_FAIL} from "./actionTypes";
 
 import { setLoading } from "./code";
 
@@ -7,6 +7,7 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
+/* LOAD_APP_SUCCESS*/
 export const loadApplicantSuccess = (applicants) =>{
     return {
         type:LOAD_APP_SUCCESS,
@@ -14,6 +15,7 @@ export const loadApplicantSuccess = (applicants) =>{
     }
 }
 
+/* LOAD_APP_FAIL*/
 export const loadApplicantFail = (message) =>{
     return {
         type: LOAD_APP_FAIL,
@@ -21,6 +23,7 @@ export const loadApplicantFail = (message) =>{
     }
 }
 
+/* UPDATE_STATUS*/
 export const updateStatus = (obj, status) =>{
     return {
         type: UPDATE_STATUS,
@@ -29,19 +32,42 @@ export const updateStatus = (obj, status) =>{
     }
 }
 
-export const changeStatus = (obj, status) =>{
-    return(dispatch) => {
-        dispatch(setLoading(true));
-        // TODO: make api call here and put the dispatch inside then block
-        dispatch(updateStatus(obj, status));
-        dispatch(setLoading(false));
+/* UPDATE_STATUS_FAIL*/
+export const updateStatusFail = (message) =>{
+    return {
+        type: UPDATE_STATUS_FAIL,
+        payload : message
     }
 }
 
+/* backend call to update application evaluation by  administrators and call to dispatch appropriate action*/
+export const changeStatus = (obj, status) =>{
+    return(dispatch) => {
+        dispatch(setLoading(true));
+        fetch('http://localhost:8000/api/update/', {
+            method: 'PUT',
+            body:JSON.stringify({
+                "email":obj.email,
+                "status":status
+            }),
+            headers,
+        }).then( (data) => data.json()).then( (data) => {
+            if (data.type == "error")
+                dispatch(updateStatusFail(data.message));
+            else {
+                dispatch(updateStatus(obj, status));
+                dispatch(setLoading(false));
+
+            }
+          });
+    }
+}
+
+/* backend call to fetch applicants data and dspatch appropriate actions*/
 export const loadApplicants = () =>{
     return (dispatch) => {
         console.log("hree");
-        fetch('http://localhost:8000/admin/getAll/', {
+        fetch('http://localhost:8000/api/getAll/', {
                 method: 'GET',
                 headers,
             }
@@ -51,7 +77,6 @@ export const loadApplicants = () =>{
                     dispatch(loadApplicantFail(data.message));
                 }
                 else {
-                    console.log(data);
                     dispatch(loadApplicantSuccess(data));
                 }
             });

@@ -1,5 +1,7 @@
 import { NEW_USER, USER_ADDING,USER_ADDING_ERROR, SET_LOADING } from './actionTypes';
-//import history from '../history'
+import {setLoading} from './code';
+
+/*NEW_USER*/
 const addUser = _id => {
     return {
         type : NEW_USER,
@@ -7,6 +9,7 @@ const addUser = _id => {
     }
 }
 
+/*USER_ADDING_ERROR*/
 const addUserFail = msg =>
 {
     return {
@@ -14,14 +17,18 @@ const addUserFail = msg =>
         msg : msg
     }
 }
+
 // metadata- data tat describes data
 const headers = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
 }
+
+/* call to store applicant info is made and appropriate actions are dispatched here*/
 export const onSubmit = user => {
     return ( dispatch) => {
         dispatch(onUserAdding(true));
-        fetch('http://localhost:8000/', {
+        dispatch(setLoading(true));
+        fetch('http://localhost:8000/api/', {
                 method: 'POST',
                 body:JSON.stringify({
                     "firstname":user.firstname,
@@ -37,6 +44,7 @@ export const onSubmit = user => {
                 return response.json();
         }}
         ).then((data)=> {
+            dispatch(setLoading(false));
             dispatch(onUserAdding(false));
             if(data.type==='error')
                 dispatch(addUserFail(data.message));
@@ -48,6 +56,7 @@ export const onSubmit = user => {
     }
 }
 
+/* USER_ADDING*/
 export const onUserAdding = adding => {
     return {
         type : USER_ADDING,

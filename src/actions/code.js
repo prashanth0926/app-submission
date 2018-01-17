@@ -5,12 +5,14 @@ import {CODE_SUBMIT_SUCCESS, ADDING_CODE,CODE_SUBMIT_ERROR, SET_LOADING} from ".
 const headers = {
     'Content-Type': 'application/json'
 }
+
+/* call is made to update code to the server and appropriate actions are dispatched*/
 export const onCodeSubmit = userCode =>{
 
     return ( dispatch) => {
         console.log(userCode._id);
         dispatch(setLoading(true));
-        fetch('http://localhost:8000/submit/', {
+        fetch('http://localhost:8000/api/submit/', {
                 method: 'PUT',
                 body:JSON.stringify({
                     "code":userCode.code,
@@ -31,6 +33,7 @@ export const onCodeSubmit = userCode =>{
     }
 }
 
+/*ADDING_CODE*/
 export const OnaddingCode = add => {
     return {
         type : ADDING_CODE,
@@ -38,6 +41,7 @@ export const OnaddingCode = add => {
     }
 }
 
+/*SET_LOADING*/
 export const setLoading = loading => {
     return {
         type : SET_LOADING,
@@ -45,6 +49,7 @@ export const setLoading = loading => {
     }
 }
 
+/*CODE_SUBMIT_SUCCESS*/
 export const addCode = obj => {
     return {
         type : CODE_SUBMIT_SUCCESS,
@@ -52,6 +57,7 @@ export const addCode = obj => {
     }
 }
 
+/*CODE_SUBMIT_ERROR*/
 export const addCodeFail= obj => {
     return {
         type : CODE_SUBMIT_ERROR,

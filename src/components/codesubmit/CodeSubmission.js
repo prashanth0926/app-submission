@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-
 import './CodeSubmission.css';
 import { RingLoader } from 'react-spinners';
-import {onCodeSubmit, OnaddingCode} from "../../actions/code";
-import { stat } from 'fs';
+import {onCodeSubmit, OnaddingCode} from "../../actions";
+
 
 class CodeSubmit extends Component{
 
@@ -13,9 +12,7 @@ class CodeSubmit extends Component{
         this.state = {
            code : ''
         }
-
-        this.onClick = this.onClick.bind(this);
-
+            this.onClick = this.onClick.bind(this);
     }
 
     handleChange = event => {
@@ -24,13 +21,14 @@ class CodeSubmit extends Component{
         });
 
     }
-
+    /* clears code field*/
     handleClose = () => {
         this.setState({
             code: ''
         });
     }
 
+    /* triggered on code submit button click*/
     onClick = (event) => {
         event.preventDefault();
         this.props.OnaddingCode(true);
@@ -50,7 +48,6 @@ class CodeSubmit extends Component{
     //console.log(this.props.match.params.id) -> parameters in the URL;
 
     render(){
-        console.log(this.props.codeSubmitError, this.props.codeSubmitted);
         if(this.props.loading) {
             return (<div className='sweet-loading'>
                 <RingLoader
@@ -59,18 +56,20 @@ class CodeSubmit extends Component{
                     />
                 </div>)
         }
+        /* rendered on successfull submission*/
         else if(this.props.codeSubmitted){
-            return (<div> CODE SUBMITTED </div>);
-        }/* error here when moving from application page to code page */
+            return (<div className={"codeSubmitFeedback"}> YOUR CODE IS SUBMITTED SUCCESSFULLY.</div>);
+        }
+        /* rendered On error*/
         else if( this.props.codeSubmitError && this.props.codeSubmitError.length>0){
-            return (<div>{this.props.codeSubmitError} </div>);
+            return (<div className={"codeSubmitFeedback"}>{this.props.codeSubmitError} </div>);
         }
        return(
+           /* continer with placeholder for code text*/
             <div className="container">
                 <form className="well" onSubmit={this.onClick} noValidate>
-                    <legend>Submit Filler Code here</legend>
+                    <legend>Submit Your Code here</legend>
                     <div className="form-group">
-                        <label>Code</label>
                         <textarea
                             id="code"
                             className="form-control"
@@ -80,7 +79,7 @@ class CodeSubmit extends Component{
                             onChange={this.handleChange}
                         />
                     </div>
-                    <input className=" btn btn-lg btn-success"  type="submit" />
+                    <input className=" btn btn-lg btn-success center-block"  type="submit" />
                 </form>
             </div>
         );

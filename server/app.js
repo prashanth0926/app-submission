@@ -19,8 +19,8 @@ db.once('open', function () {
     console.log("Connected correctly to server");
 });
 
+var index= require('./routes/index');
 
-var index = require('./routes/index');
 
 
 // view engine setup
@@ -41,9 +41,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', index);
-
-
+app.use('/',index);
+/*
+app.get('*', function(req, res) {
+	res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+});
+*/
 
 	
 // catch 404 and forward to error handler
